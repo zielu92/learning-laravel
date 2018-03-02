@@ -11,29 +11,47 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('', function () {
 
     return view('welcome');
 
 });
 
-Route::get('/about', function () {
+//Route::get('/about', function () {
+//
+//    return "about page";
+//
+//});
+//
+//Route::get('/contact', function () {
+//
+//    return "contact";
+//
+//});
+//
+//Route::get('/post/{id}/{name}', function($id, $name) {
+//
+//    return "This is post number ". $id . " ". $name;
+//
+//});
+//
+//Route::get('admin/posts/example', array('as'=>'admin.home' ,function(){
+//
+//    $url = route('admin.home');
+//
+//
+//
+//    return "this url is ". $url;
+//
+//
+//}));
 
-    return "about page";
+//Route::get('/post/{id}', 'PostController@index');
 
-});
+Route::resource('posts', 'PostController');
 
-Route::get('/contact', function () {
 
-    return "contact";
 
-});
-
-Route::get('/post/{id}/{name}', function($id, $name) {
-
-    return "This is post number ". $id . " ". $name;
-
-});
 
 Route::group(['middleware' => ['web']], function () {
 
