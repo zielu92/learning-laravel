@@ -83,4 +83,13 @@ class PostController extends Controller
     {
         //
     }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function contact(){
+        return View::exists('contact') ? "jest view" : "nie ma takiego viewa :(";
+
+
+    }
 }
