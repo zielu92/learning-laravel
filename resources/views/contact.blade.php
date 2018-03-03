@@ -1,16 +1,16 @@
-<!-- Stored in resources/views/layouts/app.blade.php -->
-
+<!DOCTYPE html>
 <html>
 <head>
-    <title>App Name - @yield('title')</title>
+    <title>Laravel</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+
 </head>
 <body>
-@section('sidebar')
-    This is the master sidebar.
-@show
-
 <div class="container">
-    @yield('content')
+
+        <h1>Contact page</h1>
+
 </div>
 </body>
 </html>
