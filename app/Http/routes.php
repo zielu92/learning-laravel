@@ -11,11 +11,13 @@
 |
 */
 
-Route::get('', function () {
-
-    return view('welcome');
-
-});
+//Route::get('', function () {
+//
+//    return view('welcome');
+//
+//
+//
+//});
 
 //Route::get('/about', function () {
 //
@@ -47,12 +49,46 @@ Route::get('', function () {
 //}));
 
 //Route::get('/post/{id}', 'PostController@index');
+//
+//Route::resource('posts', 'PostController');
+//
+//Route::get('/contact', 'PostController@contact');
+//
+//Route::get('post/{id}', 'PostController@show_post');
 
-Route::resource('posts', 'PostController');
+/* Database RAW SQL */
 
-Route::get('/contact', 'PostController@contact');
+//Route::get('/insert', function(){
+//
+//   DB::insert('insert into posts(title, content) values(?, ?)', ['php with laravel', 'php laravel the best']);
+//
+//
+//});
+
+//Route::get('/read', function() {
+//
+//    $results = DB::select('select * from posts where id= ?', [1]);
+//
+//   foreach($results as $post){
+//       return $post -> content;
+//   }
+//
+//});
 
 
+//Route::get('/update', function() {
+//
+//    $updated = DB::update('update posts set title="updated title" where id = ?', [1]);
+//
+//    return $updated;
+//});
+
+Route::get('/delete', function() {
+
+    $delete = DB::delete('delete from posts where id = ?', [1]);
+
+    return $delete;
+});
 Route::group(['middleware' => ['web']], function () {
 
 
