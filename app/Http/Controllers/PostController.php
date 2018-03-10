@@ -1,7 +1,15 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
+if (version_compare(PHP_VERSION, '7.2.0', '>=')) {
+    // Ignores notices and reports all other kinds... and warnings
+    error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
+    // error_reporting(E_ALL ^ E_WARNING); // Maybe this is enough
+}
+
+use App\Post;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -13,9 +21,11 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index()
     {
-        return "works numer is ". $id;
+       $posts = Post::all();
+       return view('posts.index', compact('posts'));
+
     }
 
     /**
@@ -25,7 +35,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return "i am method to create stuff";
+        return view('posts.create');
     }
 
     /**
@@ -37,6 +47,20 @@ class PostController extends Controller
     public function store(Request $request)
     {
         //
+        Post::create($request->all());
+
+        return redirect('/posts');
+
+//        $input = $request->all();
+//
+//        $input['title'] = $request->title;
+//        Post::create($request->all());
+
+//        $post = new Post;
+//
+//        $post->title = $request->title;
+//
+//        $post->save();
     }
 
     /**
@@ -47,7 +71,9 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        return "this is show method" . $id;
+        $post = Post::findOrFail($id);
+
+        return view('posts.show', compact('post'));
     }
 
     /**
@@ -59,6 +85,9 @@ class PostController extends Controller
     public function edit($id)
     {
         //
+        $post = Post::findOrFail($id);
+
+        return view('posts.edit', compact('post'));
     }
 
     /**
@@ -71,6 +100,11 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $post = Post::findOrFail($id);
+
+        $post->update($request->all());
+
+        return redirect('/posts');
     }
 
     /**
@@ -82,6 +116,11 @@ class PostController extends Controller
     public function destroy($id)
     {
         //
+        $post = Post::findOrFail($id);
+
+        $post->delete();
+
+        return redirect('/posts');
     }
 
     /**
@@ -102,4 +141,6 @@ class PostController extends Controller
         //return view('post')->with('id', $id);
         return view('post', compact('id'));
     }
+
+
 }
