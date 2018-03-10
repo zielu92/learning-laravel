@@ -9,6 +9,7 @@ if (version_compare(PHP_VERSION, '7.2.0', '>=')) {
     // error_reporting(E_ALL ^ E_WARNING); // Maybe this is enough
 }
 
+use App\Http\Requests\CreatePostRequest;
 use App\Post;
 use Illuminate\Http\Request;
 
@@ -44,9 +45,11 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreatePostRequest $request)
     {
         //
+
+
         Post::create($request->all());
 
         return redirect('/posts');
@@ -75,6 +78,7 @@ class PostController extends Controller
 
         return view('posts.show', compact('post'));
     }
+
 
     /**
      * Show the form for editing the specified resource.

@@ -5,21 +5,26 @@
 
     <h1>Edit Post</h1>
 
-    <form method="post" action="/posts/{{$post->id}}">
+    {!! Form::model($post, ['method'=>'PATCH', 'action'=>['PostController@update', $post->id]]) !!}
 
-        <input type="hidden" name="_method" value="PUT">
-        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-        <input type="text" name="title" placeholder="enter title" value="{{$post->title}}">
+    <div class="form-group">
+        {!! Form::label('title', 'Title') !!}
+        {!! Form::text('title', null, ['class'=>'form-controll']) !!}
 
-        <input type="submit" name="submit">
+    </div>
 
-    </form>
+    {!! Form::submit('Update Post', ['class'=>'btn btn-primary']) !!}
 
-    <form method="post" action="/posts/{{$post->id}}">
-        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-        <input type="hidden" name="_method" value="DELETE">
-        <input type="submit" value="delete">
-    </form>
+    {!! Form::close() !!}
+
+
+
+    {!! Form::open(['method'=>'DELETE', 'action'=>['PostController@update', $post->id]]) !!}
+
+    {!! Form::submit('Delete Post', ['class'=>'btn btn-danger']) !!}
+
+    {!! Form::close() !!}
+
 
 @endsection
 @section('footer')

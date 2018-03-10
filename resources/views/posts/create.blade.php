@@ -5,15 +5,23 @@
 
 <h1>Create Post</h1>
 
-    <form method="post" action="/posts">
-        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-        <input type="text" name="title" placeholder="enter title">
 
-        <input type="submit" name="submit">
+php
 
-    </form>
+{!! Form::close() !!}
 
+@if(count($errors) > 0)
 
+    <div class="alert alert-danger">
+        <ul>
+            @foreach($errors->all() as $error)
+                <li>{{$error}}</li>
+            @endforeach
+
+        </ul>
+
+    </div>
+
+@endif
 
 @endsection
-@section('footer')
