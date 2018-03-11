@@ -50,9 +50,24 @@ class PostController extends Controller
         //
 
 
-        Post::create($request->all());
+       $input =  $request->all();
 
-        return redirect('/posts');
+       if($file = $request->file('file')) {
+
+           $name = $file->getClientOriginalName();
+
+           $file->move('images', $name);
+
+           $input['path'] = $name;
+
+       }
+
+       Post::create($input);
+
+//
+//        Post::create($request->all());
+//
+//        return redirect('/posts');
 
 //        $input = $request->all();
 //

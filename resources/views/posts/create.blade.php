@@ -5,8 +5,20 @@
 
 <h1>Create Post</h1>
 
+{!! Form::open(['method'=>'POST', 'action'=>'PostController@store', 'files'=>true]) !!}
 
-php
+
+<div class="form-group">
+    {!! Form::label('title', 'Title') !!}
+    {!! Form::text('title', null, ['class'=>'form-controll']) !!}
+</div>
+
+<div class="form-group">
+    {!! Form::file('file', ['class'=>'form-controll']) !!}
+</div>
+
+
+{!! Form::submit('Create Post', ['class'=>'btn btn-primary']) !!}
 
 {!! Form::close() !!}
 
